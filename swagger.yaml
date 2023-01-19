@@ -1,0 +1,240 @@
+openapi: 3.0.0
+info:
+  title: Jobs API
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://temp-jobs-api-lpg2.onrender.com/api/v1
+  variables: {}
+paths:
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: LOGIN USER
+      operationId: LOGINUSER
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LOGINUSERREQUEST'
+              - example:
+                  email: danthesage@gmail.com
+                  password: secret01
+            example:
+              email: danthesage@gmail.com
+              password: secret01
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: REGISTER USER
+      operationId: REGISTERUSER
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/REGISTERUSERREQUEST'
+              - example:
+                  name: Daniel
+                  email: danthesage@gmail.com
+                  password: secret01
+            example:
+              name: Daniel
+              email: danthesage@gmail.com
+              password: secret01
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /jobs:
+    get:
+      tags:
+      - Jobs
+      summary: GET ALL JOBS
+      operationId: GETALLJOBS
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - Jobs
+      summary: CREATE A NEW JOB
+      operationId: CREATEANEWJOB
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CREATEANEWJOBREQUEST'
+              - example:
+                  company: Crowdbotics
+                  position: Software Engineer
+            example:
+              company: Crowdbotics
+              position: Software Engineer
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /jobs/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The job ID
+    get:
+      tags:
+      - Jobs
+      summary: GET A SINGLE JOB
+      operationId: GETASINGLEJOB
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    patch:
+      tags:
+      - Jobs
+      summary: UPDATE A SINGLE JOB
+      operationId: UPDATEASINGLEJOB
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UPDATEASINGLEJOBREQUEST'
+              - example:
+                  company: Crowd
+                  position: DevOps
+            example:
+              company: Crowd
+              position: DevOps
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+
+    delete:
+      tags:
+      - Jobs
+      summary: DELETE A JOB
+      operationId: DELETEAJOB
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+components:
+  schemas:
+    LOGINUSERREQUEST:
+      title: LOGINUSERREQUEST
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: danthesage@gmail.com
+        password: secret01
+    UPDATEASINGLEJOBREQUEST:
+      title: UPDATEASINGLEJOBREQUEST
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: Crowd
+        position: DevOps
+    CREATEANEWJOBREQUEST:
+      title: CREATEANEWJOBREQUEST
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: Crowdbotics
+        position: Software Engineer
+    REGISTERUSERREQUEST:
+      title: REGISTERUSERREQUEST
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: Daniel
+        email: danthesage@gmail.com
+        password: secret01
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Auth
+  description: ''
+- name: Jobs
+  description: ''
