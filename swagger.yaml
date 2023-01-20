@@ -115,7 +115,7 @@ paths:
     get:
       tags:
       - Jobs
-      summary: GET A SINGLE JOB
+      summary: GET SINGLE JOB
       operationId: GETASINGLEJOB
       parameters: []
       responses:
@@ -128,7 +128,7 @@ paths:
     patch:
       tags:
       - Jobs
-      summary: UPDATE A SINGLE JOB
+      summary: UPDATE SINGLE JOB
       operationId: UPDATEASINGLEJOB
       parameters: []
       requestBody:
@@ -156,7 +156,7 @@ paths:
     delete:
       tags:
       - Jobs
-      summary: DELETE A JOB
+      summary: DELETE SINGLE JOB
       operationId: DELETEAJOB
       parameters: []
       responses:
